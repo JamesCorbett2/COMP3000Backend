@@ -1,0 +1,23 @@
+{
+    "title": "FriendRequest",
+    "properties": {
+        "_id": {
+            "bsonType": "string"
+        },
+        "recipientId": {
+            "bsonType": "string"
+        },
+        "senderId": {
+            "bsonType": "string"
+        },
+        "status": {
+            "bsonType": "string"
+        }
+    },
+    "required": [
+        "_id",
+        "recipientId",
+        "senderId",
+        "status"
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "properties": {
+        "_id": {
+            "bsonType": "objectId"
+        },
+        "packName": {
+            "bsonType": "string"
+        },
+        "cost": {
+            "bsonType": "int"
+        },
+        "packContent": {
+            "bsonType": "array",
+            "items": {
+                "bsonType": "string"
+            }
+        }
+    },
+    "required": [
+        "_id",
+        "packName",
+        "cost"
+    ]
+}

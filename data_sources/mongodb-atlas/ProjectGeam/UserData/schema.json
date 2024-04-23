@@ -1,0 +1,29 @@
+{
+    "title": "UserDatum",
+    "properties": {
+        "_id": {
+            "bsonType": "objectId"
+        },
+        "inventory": {
+            "bsonType": "array",
+            "items": {
+                "bsonType": "string"
+            }
+        },
+        "points": {
+            "bsonType": "int"
+        },
+        "username": {
+            "bsonType": "string"
+        },
+        "friends": {
+            "bsonType": "array",
+            "items": {
+                "bsonType": "string"
+            }
+        }
+    },
+    "required": [
+        "_id"
+    ]
+}
