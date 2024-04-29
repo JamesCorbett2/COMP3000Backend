@@ -1,10 +1,10 @@
-exports = async function(_id) {
+exports = async function(username) {
   try {
     // Access the MongoDB Realm user collection
     const users = context.services.get("mongodb-atlas").db("ProjectGeam").collection("UserData");
   
     // Find the user document by their unique identifier
-    const user = await users.findOne({ _id: _id });
+    const user = await users.findOne({ username: username });
     
     if (!user) {
       // User document not found
