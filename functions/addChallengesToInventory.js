@@ -1,4 +1,4 @@
-exports = async function addChallengesToInventory(username, packName) {
+exports = async function addChallengesToInventory(username, packID) {
   try {
     // Access the MongoDB Atlas service
     const mongodb = context.services.get("mongodb-atlas");
@@ -7,7 +7,7 @@ exports = async function addChallengesToInventory(username, packName) {
     
     // Find the user and pack documents by their IDs
     const user = await usersCollection.findOne({ username: username });
-    const pack = await packsCollection.findOne({ packName:packName });
+    const pack = await packsCollection.findOne({ _id :packID });
     
     if (!user) {
       return { success: false, message: "User not found" };
