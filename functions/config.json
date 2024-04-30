@@ -73,5 +73,11 @@
         "private": false,
         "run_as_system": true,
         "disable_arg_logs": true
+    },
+    {
+        "name": "getFriends",
+        "private": false,
+        "run_as_system": true,
+        "disable_arg_logs": true
     }
 ]
