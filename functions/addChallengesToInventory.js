@@ -10,11 +10,11 @@ exports = async function addChallengesToInventory(username, packID) {
     const pack = await packsCollection.findOne({ _id :packID });
     
     if (!user) {
-      return { success: false, message: "User not found" };
+      return false;
     }
     
     if (!pack) {
-      return { success: false, message: "Pack not found" };
+      return false ;
     }
     
     user.inventory = user.inventory || [];
@@ -27,10 +27,10 @@ exports = async function addChallengesToInventory(username, packID) {
     );
     
     // Return a success message
-    return { success: true, message: "Challenges added to inventory successfully" };
+    return true;
   } catch (error) {
     // Handle any errors and return an error message
     console.error("Error adding challenges to inventory:", error);
-    return { success: false, message: "Failed to add challenges to inventory" };
+    return false ;
   }
 };
