@@ -19,7 +19,7 @@
         "points": {
             "bsonType": "int"
         },
-        "recievedChallenges": {
+        "receivedChallenges": {
             "bsonType": "array",
             "items": {
                 "bsonType": "string"
