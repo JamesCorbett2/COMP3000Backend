@@ -1,22 +1,21 @@
-exports = async function() {
-  const currentUser = context.user;
-  
-  const userEmail = currentUser.data.email;
-  const usersCollection = context.services.get("mongodb-atlas").db("ProjectGeam").collection("UserData");
-  
+exports = async function(email) {
+  const users = context.services.get("mongodb-atlas").db("ProjectGeam").collection("UserData");
+
   try {
-    const user = await usersCollection.findOne({ username: userEmail });
-    
+    // Fetch the user document based on the email
+    const user = await users.findOne({ username: email });
+
+    // Check if the user document exists
     if (!user) {
+      console.error("User not found");
       return { error: "User not found" };
     }
-    
-    // Extract the received challenges array from the user document
-    const receivedChallenges = user.receivedChallenges || [];
-    
-    return receivedChallenges;
+
+    console.log("User challenges:", user.receivedChallenges); // Log inventory data
+
+    return user.receivedChallenges;
   } catch (error) {
-    console.error("Error retrieving received challenges:", error);
-    return { error: "An error occurred while retrieving received challenges" };
+    console.error("Error retrieving user challenges:", error);
+    return { error: "An error occurred while retrieving user challenges" };
   }
 };
