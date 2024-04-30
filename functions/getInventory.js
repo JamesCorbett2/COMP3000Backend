@@ -1,26 +1,22 @@
-exports = async function(currentuser) {
+exports = async function(email) {
+  const users = context.services.get("mongodb-atlas").db("ProjectGeam").collection("UserData");
+
   try {
-    // Access the MongoDB Atlas service
-    const mongodb = context.services.get("mongodb-atlas");
-    const usersCollection = mongodb.db("ProjectGeam").collection("UserData");
-    const currentuser=context.user
-    // Extract the email from the current user object
-    const userEmail = currentuser.data.email;
-    
-    // Find the user document by email
-    const user = await usersCollection.findOne({ username: userEmail });
-    
+    // Fetch the user document based on the email
+    const user = await users.findOne({ username: email });
+
+    // Check if the user document exists
     if (!user) {
-      return { success: false, message: "User not found" };
+      console.error("User not found");
+      return { error: "User not found" };
     }
-    
-    const userDoc={ user: user };
-    return userDoc; // Include a success flag
+
+    console.log("User inventory:", user.inventory); // Log inventory data
+
+    return user.inventory;
   } catch (error) {
-    // Handle any errors and return an error message
-    console.error("Error retrieving user document:", error);
-    // Instead of returning an EJSON string, return an object
-    return { success: false, message: "Failed to retrieve user document" };
+    console.error("Error retrieving user inventory:", error);
+    return { error: "An error occurred while retrieving user inventory" };
   }
 };
 
