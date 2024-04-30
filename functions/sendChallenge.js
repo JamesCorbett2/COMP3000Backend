@@ -17,7 +17,7 @@ exports = async function(sender, selectedFriend, challenge) {
     // Add the challenge to the recipient's inventory
     await usersCollection.updateOne(
       { username: selectedFriend },
-      { $push: { recievedChallenges: challenge } }
+      { $push: { receivedChallenges: challenge } }
     );
     
     // Remove the challenge from the sender's inventory
