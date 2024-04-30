@@ -4,6 +4,12 @@
         "_id": {
             "bsonType": "objectId"
         },
+        "friends": {
+            "bsonType": "array",
+            "items": {
+                "bsonType": "string"
+            }
+        },
         "inventory": {
             "bsonType": "array",
             "items": {
@@ -13,14 +19,14 @@
         "points": {
             "bsonType": "int"
         },
-        "username": {
-            "bsonType": "string"
-        },
-        "friends": {
+        "recievedChallenges": {
             "bsonType": "array",
             "items": {
                 "bsonType": "string"
             }
+        },
+        "username": {
+            "bsonType": "string"
         }
     },
     "required": [
