@@ -1,33 +1,21 @@
-exports = async function(packCost) {
+exports = async function(email, newPoints) {
   const users = context.services.get("mongodb-atlas").db("ProjectGeam").collection("UserData");
-  const packs = context.services.get("mongodb-atlas").db("ProjectGeam").collection("packData");
-  const currentuser=context.user;
 
   try {
-    const user = await users.findOne({ username: currentuser.data.email });
+    // Update the user document with the new points
+    const result = await users.updateOne({ username: email }, { $set: { points: newPoints } });
 
-    // Check if the user has enough points to purchase the pack
-    if (user.points >= packCost) {
-      // Deduct the cost of the pack from the user's points balance
-      const newPoints = user.points - packCost;
-
-      // Update the user document with the new points
-      const result = await users.updateOne({ _id: userId }, { $set: { points: newPoints } });
-
-      if (result.modifiedCount === 1) {
-        // Indicates successful update
-        return true;
-      } else {
-        // Indicates failure to update
-        return { error: "Failed to update user points" };
-      }
+    // Check if the update operation was successful
+    if (result.modifiedCount === 1) {
+      // Indicates successful update
+      return true;
     } else {
-      // Insufficient points to purchase the pack
-      return { error: "Insufficient points" };
+      // Indicates failure to update
+      return { error: "Failed to update user points" };
     }
   } catch (error) {
     console.error("Error updating user points:", error);
     return { error: "An error occurred while updating user points" };
   }
-}
+};
 
