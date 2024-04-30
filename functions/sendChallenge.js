@@ -26,7 +26,7 @@ exports = async function(sender, selectedFriend, challenge) {
       { $pull: { inventory: challenge } }
     );
     
-    return { success: true };
+    return true ;
   } catch (error) {
     console.error("Error sending challenge:", error);
     return { error: "An error occurred while sending the challenge" };
